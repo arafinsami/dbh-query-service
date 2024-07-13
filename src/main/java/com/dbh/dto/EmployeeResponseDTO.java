@@ -1,9 +1,13 @@
 package com.dbh.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class SingUpDTO {
+@Builder
+public class EmployeeResponseDTO {
+
+    private Long id;
 
     private String name;
 

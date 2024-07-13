@@ -33,7 +33,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("login")
-    @Operation(summary = "signup an employee")
+    @Operation(summary = "login an employee")
     public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginDTO loginDTO) {
         Employee employee = authService.login(loginDTO);
         String token = tokenService.generateToken(employee);

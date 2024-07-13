@@ -30,12 +30,19 @@ public class SecurityConfig {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
+    private static final String[] SWAGGER_MATCHERS = {
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-ui.html"
+    };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( authorizeRequests -> authorizeRequests
                         .requestMatchers("/authentication/**").permitAll()
+                        .requestMatchers(SWAGGER_MATCHERS).permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
